@@ -11,6 +11,14 @@ module.exports = {
         module: {
             rules: [
                 { 
+                    test: /\.(js|jsx)$/, 
+                    exclude: /node_modules/, 
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015', 'react']
+                    } 
+                },
+                { 
                     test: /.css$/, 
                     loader:"style-loader!css-loader",
                     exclude: /node_modules/
@@ -18,8 +26,9 @@ module.exports = {
             ]
         },
         plugins: [
+            //
             new HtmlWebpackPlugin({
-                hash:true,
+                template:'./app/index.html',
             }),
 
             new webpack.HotModuleReplacementPlugin(),
